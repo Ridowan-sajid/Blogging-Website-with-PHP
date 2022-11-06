@@ -9,7 +9,7 @@
 <?php
 include "header.php";
 
- $nameErr= $emailErr = "";
+$nameErr= $emailErr = "";
 $title = $details = $dob = $user = "";
 $message= $error ="";
 
@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            $final_data = json_encode($array_data);
            if(file_put_contents('post.json', $final_data))
            {  
-                echo "Post Appended Success fully"; 
-                //header("location: login.php");
+                echo "Post Appended Successfully"; 
+                header("location: mypost.php");
            }  
           }
              
@@ -60,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 ?>
-<h2>PHP Form Validation Example</h2>
-<?php session_start(); ?>
+<h2>Create Post</h2>
+<?php //session_start(); ?>
 <!-- <p><span class="error">* Required field</span></p> -->
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
   Title: <input type="text" name="title">
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $_SESSION['user'];
   }else{
     echo "";
-  } 
+  }
   ?>" name="author">
 
 

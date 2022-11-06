@@ -10,7 +10,7 @@
 <?php
 include "header.php"
 ?>
-<h1>Hello User</h1>
+<h1>Hello Editor</h1>
     <?php
     
         $file = file_get_contents('post.json');
@@ -26,11 +26,10 @@ include "header.php"
                 //header('Location:profile.php');
                 echo "<hr>";
         }
-?>
 
 
- <?php     
-include "footer.php"
+    include 'EditorDeletePost.php';
+    include "footer.php";
 ?>
 </body>
 </html>

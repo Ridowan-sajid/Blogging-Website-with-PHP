@@ -18,13 +18,13 @@ include "header.php";
     if(!empty($_SESSION['user']) && !empty($_SESSION['pass'])){
         $name= $_SESSION['user'];
         $password=$_SESSION['pass'];
-        $file = file_get_contents('data.json');
+        $file = file_get_contents('editor.json');
         $assoc = json_decode($file, true);
         //var_dump($assoc);
     
         foreach($assoc as $file){
             if($file["name"]==$name && $file["password"]==$password){
-                echo "Successfully Logged In<br>";
+               
                 echo "Name: ".$name."<br>";
                 echo "Email: ".$file['email']."<br>";
                 echo "Gendr: ".$file['gender']."<br>";
@@ -38,11 +38,11 @@ include "header.php";
       }
 ?>
 
-<form action="logout.php" method="post">
+<form action="EditorLogout.php" method="post">
 <button type="submit">Log Out</button>
 </form>
 
- <?php     
+<?php     
 include "footer.php"
 ?>
 </body>

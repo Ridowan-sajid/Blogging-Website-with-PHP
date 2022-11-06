@@ -1,1 +1,9 @@
-[{"name":"Ridowan Sajid","email":"sajidridowan7@gmail.com","gender":"male","dob":"2022-11-09","password":"123456789"},{"name":"izaz Siddique","email":"izaz10921@gmail.com","gender":"male","dob":"2022-11-30","password":"0987654321"}]
+[
+    {
+        "name": "Ridowan Sajid",
+        "email": "sajidridowan7@gmail.com",
+        "gender": "male",
+        "dob": "2003-01-16",
+        "password": "123456789"
+    }
+]

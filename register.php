@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //'confirm_password' => $_POST["confirm_password"] 
            );  
            $array_data[] = $extra;  
-           $final_data = json_encode($array_data); 
+           $final_data = json_encode($array_data,JSON_PRETTY_PRINT); 
            if(file_put_contents('data.json', $final_data))  
            {  
                 echo "File Appended Success fully"; 
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       //      $error = "<label class='text-danger'>Confirm password field cannot be empty</label>";  
       // }
 ?>
-<h2>PHP Form Validation Example</h2>
+<h2>Register Yourself Here</h2>
 <p><span class="error">* Required field</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
   Name: <input type="text" name="name">

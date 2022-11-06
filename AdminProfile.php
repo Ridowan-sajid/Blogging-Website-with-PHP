@@ -18,7 +18,7 @@ include "header.php";
     if(!empty($_SESSION['user']) && !empty($_SESSION['pass'])){
         $name= $_SESSION['user'];
         $password=$_SESSION['pass'];
-        $file = file_get_contents('data.json');
+        $file = file_get_contents('admin.json');
         $assoc = json_decode($file, true);
         //var_dump($assoc);
     
@@ -42,7 +42,7 @@ include "header.php";
 <button type="submit">Log Out</button>
 </form>
 
- <?php     
+<?php     
 include "footer.php"
 ?>
 </body>
