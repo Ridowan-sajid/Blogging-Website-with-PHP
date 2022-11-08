@@ -33,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else if(!empty($_POST["details"])) {
       $details = ($_POST["details"]);
     }
-    if(file_exists('post.json'))  
+    if(file_exists(dirname(__FILE__).'/../json/post.json'))  
         {  
             if(!empty($title) && !empty($details)){
-              $current_data = file_get_contents('post.json');  
+              $current_data = file_get_contents(dirname(__FILE__).'/../json/post.json');  
               $array_data = json_decode($current_data,true);
               $extra = array(  
                 'title'     =>     $title,
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            );  
            $array_data[] = $extra;
            $final_data = json_encode($array_data);
-           if(file_put_contents('post.json', $final_data))
+           if(file_put_contents(dirname(__FILE__).'/../json/post.json', $final_data))
            {  
                 echo "Post Appended Successfully"; 
                 header("location: mypost.php");
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <input type="submit" name="submit" value="Submit">  
 </form>
 <?php
-include "footer.php"
+include "footer.php";
 ?>
 </body>
 </html>

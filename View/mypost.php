@@ -11,13 +11,17 @@
 include "header.php"
 ?>
 <h1>Hello User</h1>
-    <?php
-    
-        $file = file_get_contents('post.json');
+<?php
+
+    //session_start();
+        if(!empty($_SESSION['user'])){
+        $name= $_SESSION['user'];
+        $file = file_get_contents(dirname(__FILE__).'/../json/post.json');
         $assoc = json_decode($file, true);
         //var_dump($assoc);
     
         foreach($assoc as $file){
+            if($file['author']==$name){
                 echo "<hr>";
                 echo "Title: ".$file['title']."<br>";
                 echo "Details: ".$file['details']."<br>";
@@ -25,12 +29,15 @@ include "header.php"
                 echo "Author: ".$file['author']."<br>";
                 //header('Location:profile.php');
                 echo "<hr>";
+            }    
         }
+    }
+    include 'deletePost.php';
+
 ?>
 
-
  <?php     
-include "footer.php"
+include "footer.php";
 ?>
 </body>
 </html>

@@ -12,24 +12,21 @@ include "header.php";
 ?>
 <h1>Hello User</h1>
     <?php
-    //session_start();
     
     
     if(!empty($_SESSION['user']) && !empty($_SESSION['pass'])){
         $name= $_SESSION['user'];
         $password=$_SESSION['pass'];
-        $file = file_get_contents('data.json');
+        $file = file_get_contents(dirname(__FILE__).'/../json/data.json');
         $assoc = json_decode($file, true);
         //var_dump($assoc);
     
         foreach($assoc as $file){
             if($file["name"]==$name && $file["password"]==$password){
-                echo "Successfully Logged In<br>";
                 echo "Name: ".$name."<br>";
                 echo "Email: ".$file['email']."<br>";
                 echo "Gendr: ".$file['gender']."<br>";
                 echo "Date of Birth: ".$file['dob']."<br>";
-                //header('Location:profile.php');
             }
         }
       }
@@ -43,7 +40,7 @@ include "header.php";
 </form>
 
  <?php     
-include "footer.php"
+include "footer.php";
 ?>
 </body>
 </html>

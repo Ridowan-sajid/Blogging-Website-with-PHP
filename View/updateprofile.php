@@ -66,13 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = ($_POST["password"]);
       }}
 
-
-      
-      
-      // else if(empty($_POST["confirm_password"]))  
-      // {  
-      //      $error = "<label class='text-danger'>Confirm password field cannot be empty</label>";  
-      // }
 ?>
 
 
@@ -87,7 +80,6 @@ $del="";
     $gender2= "";
     $dob2= "";
     $password2= "";
-    //session_start();
     
     $name2= $name;
     $email2= $email;
@@ -102,7 +94,7 @@ $del="";
     if(!empty($_SESSION['user']) && !empty($_SESSION['pass'])){
         $name= $_SESSION['user'];
         $password=$_SESSION['pass'];
-        $file = file_get_contents('data.json');
+        $file = file_get_contents(dirname(__FILE__).'/../json/data.json');
         $assoc = json_decode($file, true);
         //var_dump($assoc);
         
@@ -110,14 +102,12 @@ $del="";
         foreach($assoc as $file){
             
             if($file["name"]==$name && $file["password"]==$password){
-                //$name2=$name;
                 $del=$name;
                 $name = $name;
                 $email=$file['email'];
                 $gender=$file['gender'];
                 $dob=$file['dob'];
                 $password=$file['password'];
-                //header('Location:profile.php');
             }
         }
       }
@@ -127,10 +117,10 @@ $del="";
 
 
 
-      if(file_exists('data.json') && isset($_POST['submit']))  
+      if(file_exists(dirname(__FILE__).'/../json/data.json') && isset($_POST['submit']))  
       {
 
-      $data = file_get_contents('data.json');
+      $data = file_get_contents(dirname(__FILE__).'/../json/data.json');
       $json = json_decode($data);
      // $array = (array) $json[0];
   
@@ -143,7 +133,7 @@ $del="";
           
       }
       $json = json_encode($json, JSON_PRETTY_PRINT);
-      file_put_contents('data.json', $json);
+      file_put_contents(dirname(__FILE__).'/../json/data.json', $json);
 
 
       $_SESSION['user']=$name2;
@@ -153,23 +143,21 @@ $del="";
 
         
           if(!empty($name) && !empty($email) && !empty($gender) && !empty($dob) && !empty($password)){
-            $current_data = file_get_contents('data.json');  
+            $current_data = file_get_contents(dirname(__FILE__).'/../json/data.json');  
             $array_data = json_decode($current_data,true);
             //echo $name;
           
             $extra = array(  
               'name'     =>     $name2,
               'email'   =>     $email2,
-              //'username' =>     $_POST["username"],
               'gender'   =>     $gender2,
               'dob'      =>     $dob2,
               'password' =>     $password2,
-              //'confirm_password' => $_POST["confirm_password"] 
          ); 
       } 
          $array_data[] = $extra;  
          $final_data = json_encode($array_data,JSON_PRETTY_PRINT); 
-         if(file_put_contents('data.json', $final_data))  
+         if(file_put_contents(dirname(__FILE__).'/../json/data.json', $final_data))  
          {  
               echo "File Appended Success fully"; 
               header("location: profile.php");
@@ -202,7 +190,7 @@ $del="";
   <input type="radio" name="gender" value="other">Other
   <span class="error">* <?php echo $genderErr;?></span>
   <br><br>
-  password:
+
   <input type="hidden" name="password" value="<?php echo $password?>" > 
 <input type="submit" name="submit" value="Submit">  
 </form>
@@ -210,7 +198,7 @@ $del="";
 
 
 
-include "footer.php"
+include "footer.php";
 ?>
 </body>
 </html>

@@ -28,7 +28,7 @@ $del="";
         }
     }
 
-    $data = file_get_contents('post.json');
+    $data = file_get_contents(dirname(__FILE__).'/../json/post.json');
     $json = json_decode($data);
     //$array = (array) $json[0];
 
@@ -41,7 +41,7 @@ $del="";
         
     }
     $json = json_encode($json, JSON_PRETTY_PRINT);
-    file_put_contents('post.json', $json);
+    file_put_contents(dirname(__FILE__).'/../json/post.json', $json);
 
     
     

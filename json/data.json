@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Tanjib Bristy",
+        "email": "tanjub@gmail.com",
+        "gender": "female",
+        "dob": "2010-10-13",
+        "password": "Tanjib123456"
+    },
+    {
+        "name": "Neon Islam",
+        "email": "neon@gmail.com",
+        "gender": "other",
+        "dob": "1999-11-24",
+        "password": "Neon12345"
+    }
+]

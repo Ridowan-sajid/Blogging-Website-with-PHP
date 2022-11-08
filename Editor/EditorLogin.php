@@ -13,72 +13,54 @@ include "header.php";
 <form action="" method="post">
   <div class="container">
     <label for="name"><b>name</b></label>
-    <input type="text" placeholder="Enter Username" name="name" value="<?php 
-    if(isset($_COOKIE['name'])){
-      echo $_COOKIE['name'];
-    }
-    else{
-      echo "";
-    }
-     
-    ?>" >
+    <input type="text" placeholder="Enter Username" name="name" >
     <br>
 
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" value="<?php 
-    if(isset($_COOKIE['password'])){
-      echo $_COOKIE['password'];
-    }
-    else{
-      echo "";
-    }
-
-    ?>" >
+    <input type="password" placeholder="Enter Password" name="password" >
     <br>
-    
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
 <br>
     <button type="submit">Login</button>
   </div>
 </form>
 
 <?php
-$name=$password="";
-
+$name="";
+$password="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
-      $nameErr = "Name is required";
+      echo "Name is required";
     } else if(!empty($_POST["name"])) {
     $name = htmlspecialchars($_POST["name"]);
-    $wcount = str_word_count($name);
-    if($wcount<2){
-          $nameErr="Minimum 2 words required";
-    }
     if (!preg_match("/[a-zA-Z]/",$name))
     {
-        $nameErr = "Must start with a letter";
+        echo "Must start with a letter";
     }
     
     if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-        $nameErr = "Only letters and white space allowed";
+        echo "Only letters and white space allowed";
     }
     }
 
     if(empty($_POST["password"]))  
-      {  
-           $passErr = "Enter a password";  
-      } 
-      else if(strlen($_POST["password"])<8){
-
-        $passErr = "password should be grether then 8";
-      }else if(!empty($_POST["password"])){
-        $password = htmlspecialchars($_POST["password"]);
-      }
-
-      if(!empty($_POST['remember'])){
+    {  
+         echo "Enter a password";  
+    } 
+    if (strlen($_POST["password"]) <= '8') {
+      echo  "Your Password Must Contain At Least 8 Characters!";
+    }
+    elseif(!preg_match("#[0-9]+#",$_POST["password"])) {
+        echo "Your Password Must Contain At Least 1 Number!";
+    }
+    elseif(!preg_match("#[A-Z]+#",$_POST["password"])) {
+        echo "Your Password Must Contain At Least 1 Capital Letter!";
+    }
+    elseif(!preg_match("#[a-z]+#",$_POST["password"])) {
+        echo "Your Password Must Contain At Least 1 Lowercase Letter!";
+    }else if(!empty($_POST["password"])){
+      $password = htmlspecialchars($_POST["password"]);
+    }
     
         $cookie_name="name";
         $cookie_value=$name;
@@ -90,29 +72,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         //print_r($_COOKIE);
     
-      }
+      
+
     
   }
 
   
+  $file = file_get_contents('editor.json');
+  $assoc = json_decode($file, true);
 
   if(!empty($name) && !empty($password)){
-    // if($_COOKIE['name']==$name && $_COOKIE['password']==$password){
-    //   echo "Successfully Logged In by cookie";
-    // }
-    //session_start();
+
+    session_start();
 
     $_SESSION['user']=$name;
     $_SESSION['pass']=$password;
 
-    $file = file_get_contents('data.json');
-    $assoc = json_decode($file, true);
-    //var_dump($assoc);
 
     foreach($assoc as $file){
         if($file["name"]==$name && $file["password"]==$password){
             echo "Successfully Logged In";
-            header('Location:profile.php');
+            header('Location:EditorProfile.php');
         }
     }
   }

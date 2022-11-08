@@ -8,20 +8,20 @@
 </head>
 <body>
 <?php
-include "header.php"
+include "header.php";
 ?>
-<h1>Hello User</h1>
-<?php
+<h1>Start Your Blogging Here</h1>
 
-    //session_start();
-        if(!empty($_SESSION['user'])){
-        $name= $_SESSION['user'];
-        $file = file_get_contents('post.json');
+<img src="./home.png" alt="">
+<h3>Post:</h3>
+    <?php
+    
+
+        $file = file_get_contents(dirname(__FILE__).'/../json/post.json');
         $assoc = json_decode($file, true);
         //var_dump($assoc);
     
         foreach($assoc as $file){
-            if($file['author']==$name){
                 echo "<hr>";
                 echo "Title: ".$file['title']."<br>";
                 echo "Details: ".$file['details']."<br>";
@@ -29,16 +29,9 @@ include "header.php"
                 echo "Author: ".$file['author']."<br>";
                 //header('Location:profile.php');
                 echo "<hr>";
-            }    
         }
-    }
-    include 'deletePost.php';
-
 ?>
 
-<!-- <form action="" method="post">
-<button type="submit">Delete</button>
-</form> -->
 
  <?php     
 include "footer.php"
