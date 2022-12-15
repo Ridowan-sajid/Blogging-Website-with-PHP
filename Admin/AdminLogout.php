@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body class="home">
     <?php
     
     setcookie("name", "", time() - (60*60*24* 30),"/");
@@ -15,7 +15,7 @@
     session_unset();
     session_destroy();
 
-    header("location: home.php")
+    header("location:".dirname(__FILE__)."/../View/home.php");
     ?>
 </body>
 </html>

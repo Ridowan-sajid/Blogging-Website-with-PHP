@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +24,7 @@ include dirname(__FILE__).'/../View/conn.php';
 ?>
 
     <?php
-include dirname(__FILE__).'/../Editor/EditorDeletePost.php';
+// include dirname(__FILE__).'/../Editor/EditorDeletePost.php';
 
  // select or read data start
  $sql = "SELECT id, title,details,dop,author FROM post";
@@ -52,6 +55,7 @@ include dirname(__FILE__).'/../Editor/EditorDeletePost.php';
         echo '<form action="" method="post">
         <input type="number" hidden name="id" value="'.$row['id'].'" >
         <td> <input class="btn btn-primary" type="submit" name="delete" value="Delete"></td>
+        <td><input class="btn btn-primary" type="submit" name="update" value="Update"></td>
        
       </form>';
         echo "</div>";
@@ -59,19 +63,30 @@ include dirname(__FILE__).'/../Editor/EditorDeletePost.php';
  
      }
      echo '</div>';
+     
  
  } else {
      echo "0 results";
  }
 
-
- if(isset($_POST['delete'])){
+if(isset($_POST['update'])){
     $id=$_POST['id'];
     $_SESSION['id']=$id;
 
-    header('location:EditorDeletePost.php');
+    header('location:AdminUpdatePost.php');
+
 }
+else if(isset($_POST['delete'])){
+    $id=$_POST['id'];
+    $_SESSION['id']=$id;
+
+    header('location:AdminDeletePost.php');
+}
+
+
 ?>
+
+
  <?php     
 include dirname(__FILE__).'/../View/footer.php';
 ?>

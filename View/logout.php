@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body class="home">
     <?php
     
-    setcookie("name", "", time() - (60*60*24* 30),"/");
-    setcookie("password", "", time() - (60*60*24* 30),"/");
+
     session_start();
     session_unset();
     session_destroy();

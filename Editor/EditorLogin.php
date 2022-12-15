@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,24 +8,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+.height-Form{
+    min-height: 30rem;
+  }
+</style>
 </head>
-<body>
+<body class="home">
 <?php
-include "header.php";
+include dirname(__FILE__).'/../View/header.php';
+include dirname(__FILE__).'/../View/conn.php';
 ?>
-<form action="" method="post">
-  <div class="container">
-    <label for="name"><b>name</b></label>
-    <input type="text" placeholder="Enter Username" name="name" >
-    <br>
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" >
-    <br>
-<br>
-    <button type="submit">Login</button>
+<section class="height-Form">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5 my-4">
+        <img src="../Controller/pexels-tirachard-kumtanom-733852.jpg"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form action="" method="post">
+          <div class="divider d-flex align-items-center my-2">
+            
+          </div>
+
+          <div class="form-outline mb-4">
+            <input type="text" id="form3Example3" class="form-control form-control-lg"
+              placeholder="Enter a valid User Name" name="name" value="<?php 
+
+     
+    ?>"/>
+            <label class="form-label" for="form3Example3">Username</label>
+          </div>
+
+          <div class="form-outline mb-3">
+            <input type="password" id="form3Example4" class="form-control form-control-lg"
+              placeholder="Enter password" name="password" value="<?php 
+
+
+    ?>"/>
+            <label class="form-label" for="form3Example4">Password</label>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+
+                    </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+            
+          </div>
+
+        </form>
+      </div>
+    </div>
   </div>
-</form>
+</section>
+
 
 <?php
 $name="";
@@ -70,35 +116,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         setcookie($cookie_name, $cookie_value, time() + (60*60*24* 30), "/"); 
         setcookie($cookie_name2, $cookie_value2, time() + (60*60*24* 30), "/"); 
     
-        //print_r($_COOKIE);
-    
-      
-
-    
   }
 
   
-  $file = file_get_contents('editor.json');
-  $assoc = json_decode($file, true);
+
 
   if(!empty($name) && !empty($password)){
 
-    session_start();
 
     $_SESSION['user']=$name;
     $_SESSION['pass']=$password;
 
 
-    foreach($assoc as $file){
-        if($file["name"]==$name && $file["password"]==$password){
-            echo "Successfully Logged In";
-            header('Location:EditorProfile.php');
+ // select or read data start
+ $sql = "SELECT name,password FROM editor";
+ $result = $conn->query($sql);
+ 
+ 
+ if ($result->num_rows > 0) {
+     
+     while($row = $result->fetch_assoc()) {
+        if($row['name']==$name && $row['password']==$password){
+         echo "Successfully Logged In";
+         header('location:EditorProfile.php');
+        }else{
+         echo '<h2 style="color:red;">Entered wrong name or password!</h2>';
         }
-    }
-  }
+ 
+     }
+ } else {
+   echo '<h2 style="color:red;">Entered wrong name or password!</h2>';
+ }
+ 
+ }
 
 
-include "footer.php"
+include dirname(__FILE__).'/../View/footer.php';
 ?>
 </body>
 </html>
