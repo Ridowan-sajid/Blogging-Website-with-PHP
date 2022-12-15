@@ -1,4 +1,20 @@
 # Blogging-Website-with-PHP
+
+**To create this website**
+**We use: **
+
+**Front End**
+1. Html
+2. Css
+3. Javascript
+4. Ajax
+
+**Backend**
+
+1. Php
+2. Mysql
+
+
 # Home Page
 
 ![](https://github.com/Ridowan-sajid/Blogging-Website-with-PHP/blob/main/image/Screenshot%20(48).png)
