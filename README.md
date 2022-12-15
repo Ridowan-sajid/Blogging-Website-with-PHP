@@ -1,7 +1,7 @@
 # Blogging-Website-with-PHP
 
 **To create this website**
-**We use: **
+**We use:**
 
 **Front End**
 1. Html
