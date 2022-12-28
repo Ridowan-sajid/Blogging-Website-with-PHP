@@ -2,17 +2,18 @@
 
 ## Project Description
 
-**Our project is about Blogging website. Where we can write blog. Any user can register himself/herself. After registering user can login and see anyone’s post, create post, update profile. There are some editors who’s are set by admin. Editor can create post, read post, register user, and also can delete anyone’s post so that inappropriate post can be deleted. There is an admin who has control over everything. Admin can create post, read post, update and delete anyone’s post, also can create user and can remove any user and update any user data.**
+**Our project is about Blogging website. Where we can write blog. Any user can register himself/herself. After registration user can login and see anyone’s post, create post, update profile. There are some editors who’s are set by admin. Editor can create post, read post, register user, and also can delete anyone’s post so that inappropriate post can be deleted. There is an admin who has control over everything. Admin can create post, read post, update and delete anyone’s post, also can create user and can remove any user and update any user data.**
 
 
 ## To create this website
-## We use:
+## We used:
 
 **Front End**
 1. Html
 2. Css
 3. Javascript
-4. Ajax
+4. Bootstrap 
+5. Ajax
 
 **Backend**
 
